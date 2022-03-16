@@ -1,4 +1,5 @@
-import 'package:clean_archtecture/domain/entities/account_entity.dart';
+import 'package:clean_archtecture/data/http/http.dart';
+import 'package:clean_archtecture/domain/entities/entities.dart';
 
 class RemoteAccountModel {
   final String accessToken;
@@ -9,6 +10,10 @@ class RemoteAccountModel {
 
   AccountEntity toEntity() => AccountEntity(accessToken);
 
-  factory RemoteAccountModel.fromJson(Map json) =>
-      RemoteAccountModel(json['accessToken']);
+  factory RemoteAccountModel.fromJson(Map json) {
+    if (!json.containsKey('accessToken')) {
+      throw HttpError.invalidData;
+    }
+    return RemoteAccountModel(json['accessToken']);
+  }
 }
