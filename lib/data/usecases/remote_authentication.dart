@@ -6,7 +6,7 @@ import 'package:clean_archtecture/domain/entities/account_entity.dart';
 import 'package:clean_archtecture/domain/helpers/helpers.dart';
 import 'package:clean_archtecture/domain/usecases/usecases.dart';
 
-class RemoteAuthentication {
+class RemoteAuthentication implements Authentication {
   final HttpClient httpClient;
   final String url;
 
@@ -15,6 +15,7 @@ class RemoteAuthentication {
     required this.url,
   });
 
+  @override
   Future<AccountEntity>? auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toMap();
     try {
