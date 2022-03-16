@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:clean_archtecture/data/http/http.dart';
 import 'package:clean_archtecture/domain/entities/account_entity.dart';
+import 'package:clean_archtecture/domain/helpers/helpers.dart';
 import 'package:clean_archtecture/domain/usecases/usecases.dart';
 
 class RemoteAuthentication {
@@ -15,11 +16,17 @@ class RemoteAuthentication {
 
   Future<void>? auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toMap();
-    await httpClient.request(
-      url: url,
-      method: 'post',
-      body: body,
-    );
+    try {
+      await httpClient.request(
+        url: url,
+        method: 'post',
+        body: body,
+      );
+    } on HttpError catch (error) {
+      throw error == HttpError.unauthorized
+          ? DomainError.invalidCredentials
+          : DomainError.unexpected;
+    }
   }
 }
 
