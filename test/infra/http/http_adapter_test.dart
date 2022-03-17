@@ -9,7 +9,6 @@ class HttpAdapter {
   final Client client;
 
   HttpAdapter(this.client);
-  // aloooooo
   Future<void> request({
     required String url,
     required String method,
