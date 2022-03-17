@@ -170,6 +170,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "http",
+      "rootUri": "file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "http_multi_server",
       "rootUri": "file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/http_multi_server-3.2.0",
       "packageUri": "lib/",
@@ -226,6 +232,12 @@
     {
       "name": "mockito",
       "rootUri": "file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mockito-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "mocktail",
+      "rootUri": "file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mocktail-0.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -410,7 +422,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-03-16T15:02:05.028397Z",
+  "generated": "2022-03-17T13:53:23.689523Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }
