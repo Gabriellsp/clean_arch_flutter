@@ -102,6 +102,10 @@ glob
 2.14
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/glob-2.0.2/
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/glob-2.0.2/lib/
+http
+2.14
+file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4/
+file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4/lib/
 http_multi_server
 2.12
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/http_multi_server-3.2.0/
@@ -142,6 +146,10 @@ mockito
 2.12
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mockito-5.1.0/
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mockito-5.1.0/lib/
+mocktail
+2.12
+file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mocktail-0.3.0/
+file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mocktail-0.3.0/lib/
 node_preamble
 2.12
 file:///Users/gabrielluis/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/node_preamble-2.0.1/
