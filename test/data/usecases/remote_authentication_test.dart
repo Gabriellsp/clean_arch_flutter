@@ -1,9 +1,9 @@
-import 'package:clean_archtecture/domain/helpers/helpers.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'package:clean_archtecture/domain/usecases/usecases.dart';
+import 'package:clean_archtecture/domain/helpers/helpers.dart';
 
 import 'package:clean_archtecture/data/http/http.dart';
 import 'package:clean_archtecture/data/usecases/usecases.dart';
