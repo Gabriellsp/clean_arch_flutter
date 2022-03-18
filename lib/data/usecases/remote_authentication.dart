@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:clean_archtecture/data/http/http.dart';
 import 'package:clean_archtecture/data/models/remote_account_model.dart';
+
 import 'package:clean_archtecture/domain/entities/account_entity.dart';
 import 'package:clean_archtecture/domain/helpers/helpers.dart';
 import 'package:clean_archtecture/domain/usecases/usecases.dart';
