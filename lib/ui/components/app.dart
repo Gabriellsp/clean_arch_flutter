@@ -50,7 +50,7 @@ class App extends StatelessWidget {
         ),
         focusColor: primaryColorLight,
       ),
-      home: const LoginPage(),
+      home: const LoginPage(null),
     );
   }
 }
