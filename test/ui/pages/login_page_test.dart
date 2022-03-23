@@ -13,15 +13,28 @@ void main() {
   late LoginPresenter presenter;
   late StreamController<String?> emailErrorController;
   late StreamController<String?> passwordErrorController;
+  late StreamController<String?> mainErrorController;
+  late StreamController<bool?> isFormValidController;
+  late StreamController<bool?> isLoadingController;
 
   Future<void> loadPage(WidgetTester tester) async {
     presenter = LoginPresenterMock();
     emailErrorController = StreamController<String?>();
     passwordErrorController = StreamController<String?>();
+    mainErrorController = StreamController<String?>();
+    isFormValidController = StreamController<bool?>();
+    isLoadingController = StreamController<bool?>();
+
     when(() => presenter.emailErrorStream)
         .thenAnswer((_) => emailErrorController.stream);
     when(() => presenter.passwordErrorStream)
         .thenAnswer((_) => passwordErrorController.stream);
+    when(() => presenter.mainErrorStream)
+        .thenAnswer((_) => mainErrorController.stream);
+    when(() => presenter.isFormValidStream)
+        .thenAnswer((_) => isFormValidController.stream);
+    when(() => presenter.isLoadingStream)
+        .thenAnswer((_) => isLoadingController.stream);
     // LoginPage utiliza componentes do material design, por isso, é necessário
     //encapsulá-lo dentro de um MaterialApp
     final loginPage = MaterialApp(home: LoginPage(presenter));
@@ -31,6 +44,9 @@ void main() {
   tearDown(() async {
     await emailErrorController.close();
     await passwordErrorController.close();
+    await mainErrorController.close();
+    await isFormValidController.close();
+    await isLoadingController.close();
   });
 
   testWidgets('Should load with correct initial state',
@@ -57,6 +73,7 @@ void main() {
 
     final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(button.onPressed, null);
+    expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 
   testWidgets('Should call validate with correct values',
@@ -145,5 +162,77 @@ void main() {
           of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
       findsOneWidget,
     );
+  });
+
+  testWidgets('Should enable button if form is valid',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isFormValidController.add(true);
+    await tester.pump(); // força os componentes serem renderizados novamente
+
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+    expect(button.onPressed, isNotNull);
+  });
+
+  testWidgets('Should enable button if form is valid',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isFormValidController.add(false);
+    await tester.pump(); // força os componentes serem renderizados novamente
+
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+    expect(button.onPressed, null);
+  });
+
+  testWidgets('Should call authentication on form submit',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isFormValidController.add(true);
+    await tester.pump();
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+
+    verify(() => presenter.auth()).called(1);
+  });
+
+  testWidgets('Should present loading', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isLoadingController.add(true);
+    await tester.pump();
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('Should hide loading', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isLoadingController.add(true);
+    await tester.pump();
+
+    isLoadingController.add(false);
+    await tester.pump();
+
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('Should present error message if authentication fails',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    mainErrorController.add('main error');
+    await tester.pump();
+
+    expect(find.text('main error'), findsOneWidget);
+  });
+
+  testWidgets('Should close streams on dispose', (WidgetTester tester) async {
+    await loadPage(tester);
+    addTearDown(() {
+      verify(() => presenter.dispose()).called(1);
+    });
   });
 }
