@@ -1,7 +1,7 @@
-import 'package:clean_archtecture/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clean_archtecture/ui/components/components.dart';
+import 'package:clean_archtecture/ui/pages/pages.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginPresenter? presenter;
@@ -26,29 +26,9 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           widget.presenter!.isLoadingStream.listen((isLoading) {
             if (isLoading!) {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      CircularProgressIndicator(),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Aguarde ...',
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  );
-                },
-              );
+              showLoading(context);
             } else {
-              if (Navigator.canPop(context)) {
-                Navigator.of(context).pop();
-              }
+              hideLoading(context);
             }
           });
 
