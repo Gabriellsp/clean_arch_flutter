@@ -17,8 +17,8 @@ class RemoteAuthentication implements Authentication {
   });
 
   @override
-  Future<AccountEntity>? auth(AuthenticationParams params) async {
-    final body = RemoteAuthenticationParams.fromDomain(params).toMap();
+  Future<AccountEntity>? auth(AuthenticationParams? params) async {
+    final body = RemoteAuthenticationParams.fromDomain(params!).toMap();
     try {
       final httpResponse = await httpClient.request(
         url: url,
