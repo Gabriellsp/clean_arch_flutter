@@ -4,6 +4,7 @@ import 'package:clean_archtecture/domain/helpers/helpers.dart';
 import 'package:clean_archtecture/domain/usecases/usecases.dart';
 
 import 'package:clean_archtecture/presentation/protocols/protocols.dart';
+import 'package:clean_archtecture/ui/pages/pages.dart';
 
 class LoginState {
   late String? email = null;
@@ -19,7 +20,7 @@ class LoginState {
   bool? isLoading = false;
 }
 
-class StreamLoginPresenter {
+class StreamLoginPresenter implements LoginPresenter {
   final Validation validation;
   final Authentication authentication;
   StreamController<LoginState>? _controller = StreamController<
